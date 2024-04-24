@@ -27,11 +27,14 @@ export {};
 const str1 = 'anagram';
 const str2 = 'nagaram';
 
-// const bruteForceSolution = (str1: string, str2: string) => {
+const bruteForceSolution = (str1: string, str2: string) => {
+  const sortedStr1 = str1.split('').sort().join('');
+  const sortedStr2 = str2.split('').sort().join('');
 
-// };
+  return sortedStr1 === sortedStr2;
+};
 
-// console.log(bruteForceSolution(str1, str2));
+console.log(bruteForceSolution(str1, str2)); // BigO(n) = O(slogn) -> sorting take logn , Space = O(1)
 
 const generateHash = (str: string, HASH: any) => {
   str.split('').map((ele) => {
@@ -57,7 +60,7 @@ const optimisedSolution = (str1: string, str2: string) => {
   return true;
 };
 
-console.log(optimisedSolution(str1, str2));
+console.log(optimisedSolution(str1, str2)); // BigO(n) = O(s+t) = O(n) , Space = O(1), only 26 key value pairs can be present
 
 // const optimalSolution = (arr: number[]) => {};
 
