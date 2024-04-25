@@ -15,8 +15,6 @@ Input: S = 3[2[ad]3[pf]]xyz
 Output: "adadpfpfpfadadpfpfpfadadpfpfpfxyz
 */
 
-import {join} from 'path';
-
 export {};
 
 const S = 'abc3[ac]';
@@ -38,7 +36,7 @@ const bruteForceSolution = (S: string) => {
 
       let k: any = '';
       while (STACK.length > 0 && !isNaN(+STACK[STACK.length - 1])) {
-        k = STACK.pop();
+        k = STACK.pop() + k;
       }
       STACK.push(subString.repeat(parseInt(k)));
     }
