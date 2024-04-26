@@ -46,9 +46,31 @@ const bruteForceSolution = (nums: number[]) => {
 // console.log(bruteForceSolution(nums));
 
 const optimisedSolution = (nums: number[]) => {
-  console.log(nums);
-  let prefix = [];
-  let postfix = [];
+  // console.log(nums);
+
+  let leftArr = [];
+  let rightArr = [];
+  let leftMul = 1;
+  let rightMul = 1;
+  let n = nums.length;
+
+  let resultArr = [];
+
+  for (let i = 0; i < n; i++) {
+    leftArr[i] = leftMul;
+    leftMul *= nums[i];
+  }
+
+  for (let j = n - 1; j >= 0; j--) {
+    rightArr[j] = rightMul;
+    rightMul *= nums[j];
+  }
+
+  for (let k = 0; k < n; k++) {
+    resultArr[k] = leftArr[k] * rightArr[k];
+  }
+
+  return resultArr;
 };
 
 console.log(optimisedSolution(nums));
