@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "lib": ["es6"],
+    "lib": ["ES2023"],
     "allowJs": true,
     "outDir": "dist",
     "rootDir": "src",

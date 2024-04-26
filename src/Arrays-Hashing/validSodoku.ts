@@ -62,7 +62,7 @@ const board = [
   ['.', '.', '2', '.', '7', '.', '.', '.', '.'],
   ['.', '1', '5', '.', '.', '.', '.', '.', '.'],
   ['.', '.', '.', '.', '.', '2', '.', '.', '.'],
-  ['.', '2', '.', '9', '.', '.', '.', '.', '.'],
+  ['.', '2', '.', '9', '.', '.', ',', '.', '.'],
   ['.', '.', '4', '.', '.', '.', '.', '.', '.'],
 ];
 // const arr2 = [1, 2, 3, 41];
@@ -111,6 +111,42 @@ const bruteForceSolution = (board: string[][]) => {
 
 // console.log(bruteForceSolution(board));
 
+const bruteForceSolution_2 = (board: string[][]) => {
+  for (let i = 0; i < 9; i++) {
+    let RHASH: any = {};
+    let VHASH: any = {};
+    let BOXHASH: any = {};
+
+    for (let j = 0; j < 9; j++) {
+      let rowEle = board[i][j];
+      let colEle = board[j][i];
+      let boxEle =
+        board[3 * Math.floor(i / 3) + Math.floor(j / 3)][
+          3 * (i % 3) + (j % 3)
+        ];
+
+      if (rowEle !== '.') {
+        RHASH[rowEle] = (RHASH[rowEle] || 0) + 1;
+        if (RHASH[rowEle] > 1) return false;
+      }
+
+      if (colEle !== '.') {
+        VHASH[colEle] = (VHASH[colEle] || 0) + 1;
+        if (VHASH[colEle] > 1) return false;
+      }
+
+      if (boxEle !== '.') {
+        BOXHASH[boxEle] = (BOXHASH[boxEle] || 0) + 1;
+        if (BOXHASH[boxEle] > 1) return false;
+      }
+      console.log(BOXHASH);
+    }
+  }
+  return true;
+};
+
+console.log(bruteForceSolution_2(board));
+
 const optimisedSolution = (board: string[][]) => {
   for (let i = 0; i < 9; i++) {
     let row = new Set(),
@@ -144,7 +180,7 @@ const optimisedSolution = (board: string[][]) => {
   return true;
 };
 
-console.log(optimisedSolution(board));
+// console.log(optimisedSolution(board));
 
 // const optimalSolution = (arr: number[]) => {};
 
