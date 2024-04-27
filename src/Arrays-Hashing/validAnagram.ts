@@ -34,7 +34,9 @@ const bruteForceSolution = (str1: string, str2: string) => {
   return sortedStr1 === sortedStr2;
 };
 
-console.log(bruteForceSolution(str1, str2)); // BigO(n) = O(slogn) -> sorting take logn , Space = O(1)
+console.log(bruteForceSolution(str1, str2));
+
+// BigO(n) = O(slogn) -> sorting take logn , Space = O(1)
 
 const generateHash = (str: string, HASH: any) => {
   str.split('').map((ele) => {
@@ -48,8 +50,10 @@ const optimisedSolution = (str1: string, str2: string) => {
 
   if (str1.length !== str2.length) return false;
 
-  generateHash(str1, HASH1);
-  generateHash(str2, HASH2);
+  for (let i = 0; i < str1.length; i++) {
+    HASH1[str1[i]] = (HASH1[str1[i]] || 0) + 1;
+    HASH2[str2[i]] = (HASH2[str2[i]] || 0) + 1;
+  }
 
   for (const key in HASH1) {
     if (HASH1[key] !== HASH2[key]) {
