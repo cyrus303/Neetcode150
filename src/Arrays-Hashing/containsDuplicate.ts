@@ -72,4 +72,19 @@ const optimalSolution = (arr: number[]) => {
   return false;
 };
 
-console.log(optimalSolution(arr1));
+// console.log(optimalSolution(arr1));
+
+const setSolution = (arr: number[]) => {
+  const SET = new Set();
+
+  for (let i = 0; i < arr.length; i++) {
+    if (SET.has(arr[i])) {
+      return true;
+    } else {
+      SET.add(arr[i]);
+    }
+  }
+  return false;
+};
+
+console.log(setSolution(arr1));
