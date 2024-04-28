@@ -30,16 +30,17 @@ const K = 2;
 
 const bruteForceSolution = (arr: number[], K: number) => {
   const HASH: Record<number, number> = {};
-
   for (let i = 0; i < arr.length; i++) {
     HASH[arr[i]] = (HASH[arr[i]] || 0) + 1;
   }
 
   let sorted = Object.entries(HASH).sort((a, b) => b[1] - a[1]);
 
-  const values = sorted.slice(0, K).map(([key]) => key);
+  const values = sorted.slice(0, K).map(([key, value]) => key);
+  console.log('HASH ->', HASH);
+  console.log('sorted ->', sorted);
 
-  return values;
+  // return values;
 };
 
 console.log(bruteForceSolution(arr1, K));
