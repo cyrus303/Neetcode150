@@ -46,8 +46,6 @@ const bruteForceSolution = (nums: number[]) => {
 // console.log(bruteForceSolution(nums));
 
 const optimisedSolution = (nums: number[]) => {
-  // console.log(nums);
-
   let leftArr = [];
   let rightArr = [];
   let leftMul = 1;
