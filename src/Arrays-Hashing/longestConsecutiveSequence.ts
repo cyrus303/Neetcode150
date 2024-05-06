@@ -27,10 +27,7 @@ export {};
 const nums = [1, -1, 0, 5, 6, 7, 8, 9, 10];
 
 const bruteForceSolution = (nums: number[]) => {
-  console.log('input ->', nums);
-
   const sortedArr = nums.sort((a, b) => a - b);
-  console.log('sortedArr ->', sortedArr);
 
   let longestLength = 1;
   let currentLength = 1;
