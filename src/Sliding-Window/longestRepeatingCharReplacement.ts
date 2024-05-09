@@ -20,20 +20,41 @@ The substring "BBBB" has the longest repeating letters, which is 4.
 There may exists other ways to achieve this answer too.
 */
 
+import {count} from 'console';
+
 export {};
 
-const str = 'ABAB';
-const k = 2;
+const str = 'AABABBA';
+const K = 1;
 
-const bruteForceSolution = (str: string) => {
-  console.log('Input ->', str);
+// const bruteForceSolution = (str: string) => {
+//   console.log('Input ->', str);
+// };
+
+// console.log(bruteForceSolution(str));
+
+const optimisedSolution = (str: string, K: number) => {
+  console.log('Input String ->', str, 'K ->', K);
+
+  const HASH: Record<string, number> = {};
+  let result = 0;
+  let left = 0;
+
+  for (let right = 0; right < str.length; right++) {
+    HASH[str[right]] = (HASH[str[right]] || 0) + 1;
+
+    let maxFrequency = Math.max(...Object.values(HASH));
+
+    while (right - left + 1 - maxFrequency > K) {
+      HASH[str[left]] -= 1;
+      left++;
+    }
+    result = Math.max(result, right - left + 1);
+  }
+  return result;
 };
 
-console.log(bruteForceSolution(str));
-
-// const optimisedSolution = (arr: number[]) => {};
-
-// console.log(optimisedSolution(arr1));
+console.log(optimisedSolution(str, K));
 
 // const optimalSolution = (arr: number[]) => {};
 
