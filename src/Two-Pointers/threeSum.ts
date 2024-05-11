@@ -31,14 +31,11 @@ Explanation: The only possible triplet sums up to 0.
 
 export {};
 
-const numbers = [-1, 0, 1, 2, -1, -4];
+const numbers = [0, 0, 0, 0];
 
 const bruteForceSolution = (arr: number[]) => {
-  console.log('Input ->', arr);
-
   const result = [];
   arr = arr.sort((a, b) => a - b);
-  console.log('Sorted Input ->', arr);
 
   for (let i = 0; i < arr.length; i++) {
     if (i > 0 && arr[i] === arr[i - 1]) continue;
@@ -68,7 +65,7 @@ console.log(bruteForceSolution(numbers));
 
 // const optimisedSolution = (arr: number[]) => {};
 
-// console.log(optimisedSolution(arr1));
+// console.log(optimisedSolution(numbers));
 
 // const optimalSolution = (arr: number[]) => {};
 
