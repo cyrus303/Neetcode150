@@ -28,6 +28,7 @@ const Str1 = 'ab';
 const Str2 = 'eidbaooo';
 
 const bruteForceSolution = (Str1: string, Str2: string) => {
+  if (Str1.length > Str2.length) return false;
   let i = 0;
   let j = 0;
 
@@ -39,6 +40,7 @@ const bruteForceSolution = (Str1: string, Str2: string) => {
     if (windowStr === Str1) {
       return true;
     }
+
     i++;
   }
   return false;
@@ -48,6 +50,8 @@ const bruteForceSolution = (Str1: string, Str2: string) => {
 
 const optimisedSolution = (Str1: string, Str2: string) => {
   console.log('Input: Str1 ->', Str1, 'Str2 ->', Str2);
+  if (Str1.length > Str2.length) return false;
+
   let HASH1: Record<string, number> = {};
   let i = 0;
   let j = 0;
@@ -66,13 +70,49 @@ const optimisedSolution = (Str1: string, Str2: string) => {
       HASH2[windowStr[i]] = (HASH2[windowStr[i]] || 0) + 1;
     }
 
+    let isPermutation = true;
+    for (const char in HASH1) {
+      if (HASH1[char] !== HASH2[char]) {
+        isPermutation = false;
+        break;
+      }
+    }
+
+    if (isPermutation) {
+      return true;
+    }
+
     i++;
   }
-  console.log('HASH1 ->', HASH1);
+  return false;
 };
 
-console.log(optimisedSolution(Str1, Str2));
+// console.log(optimisedSolution(Str1, Str2));
 
-// const optimalSolution = (arr: number[]) => {};
+const optimalSolution = (Str1: string, Str2: string) => {
+  console.log('Input: Str1 ->', Str1, 'Str2 ->', Str2);
 
-// console.log(optimalSolution(arr1));
+  const n1 = Str1.length;
+  const n2 = Str2.length;
+
+  if (n1 > n2) return false;
+
+  let s1_counts = new Array(26).fill(0);
+  let s2_counts = new Array(26).fill(0);
+
+  for (let i = 0; i < n1; i++) {
+    s1_counts[Str1.charCodeAt(i) - 97] += 1;
+    s2_counts[Str2.charCodeAt(i) - 97] += 1;
+  }
+
+  for (let i = n1; i <= n2; i++) {
+    if (JSON.stringify(s1_counts) === JSON.stringify(s2_counts))
+      return true;
+    s2_counts[Str2.charCodeAt(i) - 97] += 1;
+    s2_counts[Str2.charCodeAt(i - n1) - 97] -= 1;
+  }
+
+  return false;
+};
+
+console.log(optimalSolution('adc', 'dcda'));
