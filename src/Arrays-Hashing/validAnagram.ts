@@ -34,7 +34,7 @@ const bruteForceSolution = (str1: string, str2: string) => {
   return sortedStr1 === sortedStr2;
 };
 
-console.log(bruteForceSolution(str1, str2));
+// console.log(bruteForceSolution(str1, str2));
 
 // BigO(n) = O(slogn) -> sorting take logn , Space = O(1)
 
@@ -64,8 +64,29 @@ const optimisedSolution = (str1: string, str2: string) => {
   return true;
 };
 
-console.log(optimisedSolution(str1, str2)); // BigO(n) = O(s+t) = O(n) , Space = O(1), only 26 key value pairs can be present
+// console.log(optimisedSolution(str1, str2));
+// BigO(n) = O(s+t) = O(n) , Space = O(1), only 26 key value pairs can be present
 
-// const optimalSolution = (arr: number[]) => {};
+const optimalSolution = (str1: string, str2: string) => {
+  console.log('Input: str1 ->', str1, 'str2 ->', str2);
+  const n1 = str1.length;
+  const n2 = str2.length;
 
-// console.log(optimalSolution(arr1));
+  if (n1 !== n2) return false;
+
+  let s1_count = new Array(26).fill(0);
+  let s2_count = new Array(26).fill(0);
+
+  for (let i = 0; i < n2; i++) {
+    s1_count[str1.charCodeAt(i) - 97] += 1;
+    s2_count[str2.charCodeAt(i) - 97] += 1;
+  }
+
+  if (JSON.stringify(s1_count) === JSON.stringify(s2_count)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+console.log(optimalSolution(str1, str2));
