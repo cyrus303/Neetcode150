@@ -43,11 +43,11 @@ const bruteForceSolution = (s: string) => {
     if (s[i] === '(' || s[i] === '[' || s[i] === '{') {
       STACK.push(s[i]);
     } else if (s[i] === ')' && STACK[STACK.length - 1] === '(') {
-      STACK.splice(STACK.length - 1);
+      STACK.pop();
     } else if (s[i] === ']' && STACK[STACK.length - 1] === '[') {
-      STACK.splice(STACK.length - 1);
+      STACK.pop();
     } else if (s[i] === '}' && STACK[STACK.length - 1] === '{') {
-      STACK.splice(STACK.length - 1);
+      STACK.pop();
     } else {
       return false;
     }
@@ -103,4 +103,4 @@ myStack.push(1);
 myStack.push(2);
 myStack.pop();
 
-console.log(myStack);
+// console.log(myStack);
